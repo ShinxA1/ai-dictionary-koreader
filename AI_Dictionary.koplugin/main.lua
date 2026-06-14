@@ -33,7 +33,7 @@ local PTF_HEADER = "\u{FFF1}"
 local PTF_BOLD_START = "\u{FFF2}"
 local PTF_BOLD_END = "\u{FFF3}"
 
-local DICTIONARY_SECTION_LABELS = { "Definition", "Example", "Synonyms", "Paraphrase", "Etymology" }
+local DICTIONARY_SECTION_LABELS = { "Definição", "Exemplo", "Sinônimos", "Paráfrase", "Etimologia" }
 
 local OFFLINE_WAIT_MESSAGE = _("You are offline. AI lookup requires an active internet connection.")
 local ONLINE_WAIT_MESSAGE = _("Getting the answer...")
@@ -870,11 +870,11 @@ function AskGPT:init()
       enabled = Device:hasClipboard(),
       callback = function()
           self:Query(_reader_highlight_instance, _("AI Explain"), false,
-            "I'm reading '{title}' by '{author}'{chapter}. This is my highlighted text: \n'{selection}'\n" ..
-            "This is the context where it appears: '...{context}...'\n" ..
-            "Use web search economically to identify or verify the book, character, place, term, reference, or allusion if that helps. " ..
-            "Explain it in the context/lore of the book, and help me understand it better (like Amazon Kindle's X-Ray, but much more concise). " ..
-            "No spoilers if it's fiction. Plain text. Keep your explanation concise and brief (under 90 words), and ask no questions at the end.",
+             "Estou lendo '{title}' de '{author}'{chapter}. Este é o texto que selecionei: \n'{selection}'\n" ..
+             "Este é o contexto onde aparece: '...{context}...'\n" ..
+             "Use pesquisa na web com moderação para identificar ou verificar o livro, personagem, lugar, termo, referência ou alusão, se isso ajudar. " ..
+             "Explique no contexto/lore do livro e me ajude a entender melhor (como o X-Ray do Kindle, mas bem mais conciso). " ..
+             "Sem spoilers se for ficção. Texto puro. Mantenha sua explicação concisa e breve (menos de 90 palavras) e não faça perguntas no final.",
             AI_EXPLAIN_WEB_SEARCH_PARAMETERS)
       end,
     }
@@ -899,19 +899,19 @@ function AskGPT:init()
       enabled = Device:hasClipboard(),
       callback = function()
           self:Query(_reader_highlight_instance, _("AI Dictionary"), true,
-            "I'm an advanced learner of English. I'm reading '{title}' by '{author}'{chapter}. My selected text: \n'{selection}'\n"..
-            "This is the context where it appears: '...{context}...'\n" ..
-            "ONLY for the selected text, give me an informative, context-aware, dictionary-style answer strictly in this format ONCE and add nothing more:\n" ..
-            "(v./n./idiom/etc.) " ..
-            "/[ACCURATE and CORRECT American (US) English pronunciation in the form of IPA]/ " ..
-            "([English alphabet pronunciation help American US English])\n" ..
-            "[Up to 3 feel and register tags separated by '•', e.g. slang, conversational, blunt, historical, formal, neutral, offensive (all lower-case)]\n\n" ..
-            "Definition: [Plain and understandable definition in under 20 words]\n\n" ..
-            "Example: [A natural sentence that uses the word(s) in the same meaning and register, but in a different situation]\n\n" ..
-            "Synonyms: [Up to 3 synonyms, if any exists. If there are no synonyms skip this section]\n\n" ..
-            "Paraphrase: [A short example sentence paraphrasing the selection using simpler words, with the same meaning and register]\n\n" ..
-            "Etymology: [Concise and helpful etymology with a focus on the different parts that make up the word or interesting history in case of idioms, in under 20 words]"..
-            "(Pay close attention to the number of line breaks in the formatting of the response)")
+            "Estou lendo '{title}' de '{author}'{chapter}. Texto selecionado: \n'{selection}'\n"..
+            "Contexto onde aparece: '...{context}...'\n" ..
+            "SOMENTE para o texto selecionado, forneça uma resposta informativa, no formato de dicionário, em português brasileiro, seguindo estritamente este formato UMA ÚNICA VEZ, sem adicionar mais nada:\n" ..
+            "(classe gramatical: verbo/substantivo/expressão, etc.) " ..
+            "/[PRONÚNCIA em IPA para o português brasileiro (se aplicável)]/ " ..
+            "([ajuda de pronúncia usando o alfabeto português])\n" ..
+            "[Até 3 etiquetas de uso separadas por '•', ex.: gíria, coloquial, formal, neutro, histórico, ofensivo (tudo minúsculo)]\n\n" ..
+            "Definição: [Definição clara e compreensível em menos de 20 palavras]\n\n" ..
+            "Exemplo: [Uma frase natural que use a(s) palavra(s) com o mesmo significado e registro, mas em situação diferente]\n\n" ..
+            "Sinônimos: [Até 3 sinônimos, se existirem. Se não houver, pule esta seção]\n\n" ..
+            "Paráfrase: [Uma frase curta que parafraseie o trecho selecionado usando palavras mais simples, mantendo o significado e registro]\n\n" ..
+            "Etimologia: [Etimologia concisa e útil, focando nas partes que compõem a palavra ou história interessante no caso de expressões idiomáticas, em menos de 20 palavras]"..
+            "(Preste muita atenção à quantidade de quebras de linha na formatação da resposta)")
       end,
     }
   end)
