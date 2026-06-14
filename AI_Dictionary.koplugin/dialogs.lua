@@ -2,7 +2,7 @@ local InputDialog = require("ui/widget/inputdialog")
 local ChatGPTViewer = require("chatgptviewer")
 local UIManager = require("ui/uimanager")
 local InfoMessage = require("ui/widget/infomessage")
-local _ = require("gettext")
+local _ = require("l10n/aidictionary_l10n")
 
 local queryChatGPT = require("gpt_query")
 
@@ -32,13 +32,13 @@ local function translateText(text, target_language)
 end
 
 local function createResultText(highlightedText, message_history)
-  local result_text = _("Highlighted text: ") .. "\"" .. highlightedText .. "\"\n\n"
+  local result_text = T(_("Highlighted text: %1"), '"' .. highlightedText .. '"') .. "\"\n\n"
 
   for i = 3, #message_history do
     if message_history[i].role == "user" then
-      result_text = result_text .. _("User: ") .. message_history[i].content .. "\n\n"
+      result_text = result_text .. T(_("User: %1"), message_history[i].content) .. "\n\n"
     else
-      result_text = result_text .. _("ChatGPT: ") .. message_history[i].content .. "\n\n"
+      result_text = result_text .. T(_("ChatGPT: %1"), message_history[i].content) .. "\n\n"
     end
   end
 
