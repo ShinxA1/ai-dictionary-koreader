@@ -32,7 +32,7 @@ local VerticalSpan = require("ui/widget/verticalspan")
 local WidgetContainer = require("ui/widget/container/widgetcontainer")
 local T = require("ffi/util").template
 local util = require("util")
-local _ = require("gettext")
+local _ = require("l10n/aidictionary_l10n")
 local Screen = Device.screen
 
 local ChatGPTViewer = InputContainer:extend {
