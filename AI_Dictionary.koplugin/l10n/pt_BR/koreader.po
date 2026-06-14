@@ -1,0 +1,352 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ai-dictionary-koreader\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-13 00:00+0000\n"
+"PO-Revision-Date: 2026-06-13 22:39-0300\n"
+"Last-Translator: \n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.9\n"
+
+#. _meta.lua: plugin display name
+#. main.lua: highlight menu item "AI Dictionary" / dialog_title for the dictionary query
+#: _meta.lua main.lua
+msgid "AI Dictionary"
+msgstr "Dicionário de IA"
+
+#. _meta.lua: plugin description
+#: _meta.lua
+msgid "AI dictionary and explainer"
+msgstr "Dicionário e explicador com IA"
+
+#. main.lua: shown when offline before querying the AI
+#: main.lua
+msgid "You are offline. AI lookup requires an active internet connection."
+msgstr "Você está offline. A consulta de IA exige uma conexão ativa com a internet."
+
+#. main.lua: shown while waiting for the AI response
+#: main.lua
+msgid "Getting the answer..."
+msgstr "Obtendo a resposta..."
+
+#. main.lua: error prefix when the AI request fails (concatenated with the error detail)
+#: main.lua
+msgid "Error querying AI: "
+msgstr "Erro ao consultar a IA: "
+
+#. main.lua: fallback book title when none is available
+#: main.lua
+msgid "Unknown Title"
+msgstr "Título desconhecido"
+
+#. main.lua: fallback author when none is available
+#: main.lua
+msgid "Unknown Author"
+msgstr "Autor desconhecido"
+
+#. main.lua: fallback text when nothing is highlighted
+#: main.lua
+msgid "Nothing highlighted"
+msgstr "Nada destacado"
+
+#. main.lua: highlight menu item
+#: main.lua
+msgid "AI Explain"
+msgstr "Explicar com IA"
+
+#. main.lua: highlight menu item
+#: main.lua
+msgid "AI English Simplify"
+msgstr "Simplificar inglês com IA"
+
+#. main.lua: dialog_title / viewer title for the "AI English Simplify" query
+#: main.lua
+msgid "AI English Explain"
+msgstr "Explicação em Inglês com IA"
+
+#. main.lua: main menu item that opens the lookups report dialog
+#. main.lua: title of the lookups report request dialog
+#. main.lua: title of the generated report viewer
+#: main.lua
+msgid "AI Dictionary Lookups Report"
+msgstr "Relatório de Consultas do Dicionário de IA"
+
+#. main.lua: button label prefix showing the currently selected timeframe (concatenated with the timeframe name)
+#: main.lua
+msgid "Timeframe: "
+msgstr "Período: "
+
+#. main.lua: button to generate the lookups report
+#: main.lua
+msgid "Generate Report"
+msgstr "Gerar Relatório"
+
+#. main.lua: title of the timeframe selection dialog
+#: main.lua
+msgid "Timeframe"
+msgstr "Período"
+
+#. main.lua: shown when no lookups exist for the selected timeframe (concatenated with the timeframe name and a period)
+#: main.lua
+msgid "No lookups found for "
+msgstr "Nenhuma consulta encontrada para "
+
+#. main.lua: shown while the lookups report is being generated
+#: main.lua
+msgid "Generating report..."
+msgstr "Gerando relatório..."
+
+#. main.lua: main menu item that opens the plugin settings submenu
+#: main.lua
+msgid "AI Dictionary settings"
+msgstr "Configurações do Dicionário de IA"
+
+#. main.lua: configuration label
+#: main.lua
+msgid "API key"
+msgstr "Chave de API"
+
+#. main.lua: configuration label
+#: main.lua
+msgid "Provider URL"
+msgstr "URL do provedor"
+
+#. main.lua: configuration label
+#: main.lua
+msgid "Model"
+msgstr "Modelo"
+
+#. main.lua: configuration label
+#: main.lua
+msgid "Additional parameters"
+msgstr "Parâmetros adicionais"
+
+#. main.lua: shown in the settings list when a value is not set
+#: main.lua
+msgid "not set"
+msgstr "não definido"
+
+#. main.lua: shown in the settings list for a short api_key value
+#: main.lua
+msgid "set"
+msgstr "definido"
+
+#. main.lua: submenu item to delete a custom configuration setting
+#: main.lua
+msgid "Delete custom setting"
+msgstr "Excluir configuração personalizada"
+
+#. main.lua: error shown if configuration.lua could not be written
+#: main.lua
+msgid "Could not save configuration.lua:\n"
+msgstr "Não foi possível salvar configuration.lua:\n"
+
+#. main.lua: confirmation after settings are saved
+#: main.lua
+msgid "AI Dictionary settings saved."
+msgstr "Configurações do Dicionário de IA salvas."
+
+#. main.lua: title prefix for editing a configuration value (concatenated with the setting label)
+#: main.lua
+msgid "Edit "
+msgstr "Editar "
+
+#. main.lua: description for editing a table/literal configuration value
+#: main.lua
+msgid "Enter a Lua literal: string, number, boolean, or table."
+msgstr "Insira um literal Lua: texto, número, booleano ou tabela."
+
+#. main.lua / chatgptviewer.lua: "Cancel" button in various dialogs
+#: main.lua chatgptviewer.lua
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. main.lua: "Save" button in settings dialogs
+#: main.lua
+msgid "Save"
+msgstr "Salvar"
+
+#. main.lua: validation error for a numeric setting
+#: main.lua
+msgid "Please enter a valid number."
+msgstr "Por favor, insira um número válido."
+
+#. main.lua: validation error when entering an invalid Lua literal (concatenated with the parser error detail)
+#: main.lua
+msgid "Please enter a valid non-nil Lua value.\n"
+msgstr "Por favor, insira um valor Lua válido (não nulo).\n"
+
+#. main.lua: title of the dialog to add a new custom setting
+#: main.lua
+msgid "Add setting"
+msgstr "Adicionar configuração"
+
+#. main.lua: description of the dialog to add a new custom setting
+#: main.lua
+msgid "Enter a Lua identifier, for example: additional_parameters"
+msgstr "Insira um identificador Lua, por exemplo: additional_parameters"
+
+#. main.lua: "Next" button when adding a new custom setting
+#: main.lua
+msgid "Next"
+msgstr "Próximo"
+
+#. main.lua: validation error when adding a new custom setting
+#: main.lua
+msgid "Setting names must be Lua identifiers."
+msgstr "Os nomes das configurações devem ser identificadores Lua."
+
+#. main.lua: error when the entered setting name already exists
+#: main.lua
+msgid "That setting already exists."
+msgstr "Essa configuração já existe."
+
+#. main.lua: title prefix for setting a new custom value (concatenated with the setting key)
+#: main.lua
+msgid "Set "
+msgstr "Definir "
+
+#. chatgptviewer.lua: refresh/regenerate answer button
+#: chatgptviewer.lua
+msgid "↻"
+msgstr "↻"
+
+#. chatgptviewer.lua: "Close" button
+#: chatgptviewer.lua
+msgid "Close"
+msgstr "Fechar"
+
+#. chatgptviewer.lua: title of the follow-up question dialog
+#: chatgptviewer.lua
+msgid "Ask another question"
+msgstr "Fazer outra pergunta"
+
+#. chatgptviewer.lua: description of the follow-up question dialog
+#: chatgptviewer.lua
+msgid "Enter your question for ChatGPT."
+msgstr "Digite sua pergunta para o ChatGPT."
+
+#. chatgptviewer.lua: "Ask" button in the follow-up question dialog
+#: chatgptviewer.lua
+msgid "Ask"
+msgstr "Perguntar"
+
+#. chatgptviewer.lua: notification when a single word was copied
+#: chatgptviewer.lua
+msgid "Word copied to clipboard."
+msgstr "Palavra copiada para a área de transferência."
+
+#. chatgptviewer.lua: notification when a text selection was copied
+#: chatgptviewer.lua
+msgid "Selection copied to clipboard."
+msgstr "Seleção copiada para a área de transferência."
+
+#. dialogs.lua: prefix used when listing the original highlighted text
+#: dialogs.lua
+msgid "Highlighted text: %1"
+msgstr "Texto destacado: %1"
+
+#. dialogs.lua: prefix for the user's follow-up question in the history
+#: dialogs.lua
+msgid "User: %1"
+msgstr "Usuário: %1"
+
+#. dialogs.lua: prefix for ChatGPT's reply in the history
+#: dialogs.lua
+msgid "ChatGPT: %1"
+msgstr "ChatGPT: %1"
+
+#. dialogs.lua: loading placeholder
+#: dialogs.lua
+msgid "Loading..."
+msgstr "Carregando..."
+
+#. lookups_report.lua: timeframe label
+#: lookups_report.lua
+msgid "Today"
+msgstr "Hoje"
+
+#. lookups_report.lua: timeframe label
+#: lookups_report.lua
+msgid "3 Days"
+msgstr "3 dias"
+
+#. lookups_report.lua: timeframe label
+#: lookups_report.lua
+msgid "7 Days"
+msgstr "7 dias"
+
+#. lookups_report.lua: timeframe label
+#: lookups_report.lua
+msgid "1 Month"
+msgstr "1 mês"
+
+#. lookups_report.lua: timeframe label
+#: lookups_report.lua
+msgid "3 Months"
+msgstr "3 meses"
+
+#. lookups_report.lua: timeframe label
+#: lookups_report.lua
+msgid "1 Year"
+msgstr "1 ano"
+
+#. lookups_report.lua: timeframe label
+#: lookups_report.lua
+msgid "All Time"
+msgstr "Todo o período"
+
+#. updater.lua: ConfirmBox text when a new version is found
+#: updater.lua
+msgid ""
+"AI Dictionary %1 is available.\n"
+"\n"
+"Installed version: %2\n"
+"\n"
+"Update now?"
+msgstr ""
+"O Dicionário de IA %1 está disponível.\n"
+"\n"
+"Versão instalada: %2\n"
+"\n"
+"Atualizar agora?"
+
+#. updater.lua: "Update" confirm button
+#: updater.lua
+msgid "Update"
+msgstr "Atualizar"
+
+#. updater.lua: shown while the update is being applied
+#: updater.lua
+msgid "Updating AI Dictionary..."
+msgstr "Atualizando o Dicionário de IA..."
+
+#. updater.lua: shown if the update failed
+#: updater.lua
+msgid ""
+"AI Dictionary update failed:\n"
+"%1"
+msgstr ""
+"Falha ao atualizar o Dicionário de IA:\n"
+"%1"
+
+#. updater.lua: shown after a successful update, asking to restart
+#: updater.lua
+msgid ""
+"AI Dictionary was updated.\n"
+"\n"
+"Please quit and restart KOReader to load the new version."
+msgstr ""
+"O Dicionário de IA foi atualizado.\n"
+"\n"
+"Saia e reinicie o KOReader para carregar a nova versão."
+
+#. updater.lua: "Quit" button in the restart dialog
+#: updater.lua
+msgid "Quit"
+msgstr "Sair"
