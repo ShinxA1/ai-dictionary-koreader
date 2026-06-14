@@ -1,7 +1,7 @@
 local Device = require("device")
 local InputContainer = require("ui/widget/container/inputcontainer")
 local NetworkMgr = require("ui/network/manager")
-local _ = require("gettext")
+local _ = require("l10n/aidictionary_l10n")
 
 local showLoadingDialog = require("dialogs")
 
@@ -35,8 +35,8 @@ local PTF_BOLD_END = "\u{FFF3}"
 
 local DICTIONARY_SECTION_LABELS = { "Definition", "Example", "Synonyms", "Paraphrase", "Etymology" }
 
-local OFFLINE_WAIT_MESSAGE = "You are offline. AI lookup requires an active internet connection."
-local ONLINE_WAIT_MESSAGE = "Getting the answer..."
+local OFFLINE_WAIT_MESSAGE = _("You are offline. AI lookup requires an active internet connection.")
+local ONLINE_WAIT_MESSAGE = _("Getting the answer...")
 
 local CORE_CONFIGURATION_KEYS = { "api_key", "provider", "model" }
 local CORE_CONFIGURATION_KEY_SET = {
@@ -45,10 +45,10 @@ local CORE_CONFIGURATION_KEY_SET = {
   model = true,
 }
 local CONFIGURATION_LABELS = {
-  api_key = "API key",
-  provider = "Provider URL",
-  model = "Model",
-  additional_parameters = "Additional parameters",
+  api_key = _("API key"),
+  provider = _("Provider URL"),
+  model = _("Model"),
+  additional_parameters = _("Additional parameters"),
 }
 
 local AI_EXPLAIN_WEB_SEARCH_PARAMETERS = {
@@ -233,11 +233,11 @@ end
 
 local function display_configuration_value(key, value)
   if value == nil then
-    return "not set"
+    return _("not set")
   end
   if key == "api_key" and type(value) == "string" and value ~= "" then
     if #value <= 10 then
-      return "set"
+      return _("set")
     end
     return value:sub(1, 6) .. "..." .. value:sub(-4)
   end
@@ -343,7 +343,7 @@ local function stream_answer(chatgpt_viewer, message_history, is_dictionary, tit
       end
     end,
     on_error = function(err)
-      update_viewer("Error querying AI: " .. tostring(err))
+      update_viewer(_("Error querying AI: ") .. tostring(err))
     end,
   })
 
@@ -396,14 +396,14 @@ local lastIsDictionary = false
 function AskGPT:Query(_reader_highlight_instance, dialog_title, preface_with_selection, query, request_parameters)
   local ui = self.ui
   local title, author =
-    ui.document:getProps().title or "Unknown Title",
+    ui.document:getProps().title or _("Unknown Title"),
     ui.document:getProps().authors
   if type(author) == "table" then
     author = table.concat(author, ", ")
   end
-  author = (author and author ~= "" and author) or "Unknown Author"
+  author = (author and author ~= "" and author) or _("Unknown Author")
 
-  local highlightedText = tostring(_reader_highlight_instance.selected_text.text) or "Nothing highlighted"
+  local highlightedText = tostring(_reader_highlight_instance.selected_text.text) or _("Nothing highlighted")
   --showLoadingDialog()
 
   local chapterClause = ""
@@ -458,7 +458,7 @@ function AskGPT:Query(_reader_highlight_instance, dialog_title, preface_with_sel
   lastPrefaceWithSelection = preface_with_selection
   lastRequestParameters = request_parameters
   lastIsReport = false
-  lastIsDictionary = dialog_title == "AI Dictionary"
+  lastIsDictionary = dialog_title == _("AI Dictionary")
 
   if not online then
     return
@@ -516,11 +516,11 @@ function AskGPT:showLookupsReportRequestDialog(selected_index)
   local report_dialog
 
   report_dialog = ButtonDialog:new {
-    title = "AI Dictionary Lookups Report",
+    title = _("AI Dictionary Lookups Report"),
     buttons = {
       {
         {
-          text = "Timeframe: " .. timeframe.label,
+          text = _("Timeframe: ") .. timeframe.label,
           callback = function()
             UIManager:close(report_dialog)
             self:showLookupsReportTimeframeDialog(selected_index)
@@ -529,7 +529,7 @@ function AskGPT:showLookupsReportRequestDialog(selected_index)
       },
       {
         {
-          text = "Generate Report",
+          text = _("Generate Report"),
           callback = function()
             UIManager:close(report_dialog)
             self:generateLookupsReport(timeframe)
@@ -559,7 +559,7 @@ function AskGPT:showLookupsReportTimeframeDialog(selected_index)
   end
 
   selector_dialog = ButtonDialog:new {
-    title = "Timeframe",
+    title = _("Timeframe"),
     buttons = buttons,
   }
 
@@ -569,13 +569,13 @@ end
 function AskGPT:generateLookupsReport(timeframe)
   local entries = LookupsReport.load_entries(self.path, timeframe)
   if #entries == 0 then
-    show_message("No lookups found for " .. timeframe.label .. ".")
+    show_message(_("No lookups found for ") .. timeframe.label .. ".")
     return
   end
 
   local report_viewer = ChatGPTViewer:new {
-    title = "AI Dictionary Lookups Report",
-    text = "Generating report...",
+    title = _("AI Dictionary Lookups Report"),
+    text = _("Generating report..."),
     onAskQuestion = nil,
     benedict = self
   }
@@ -607,14 +607,14 @@ function AskGPT:saveConfiguration(configuration)
   local configuration_path = get_configuration_path(self)
   local file, err = io.open(configuration_path, "w")
   if not file then
-    show_message("Could not save configuration.lua:\n" .. tostring(err))
+    show_message(_("Could not save configuration.lua:\n") .. tostring(err))
     return false
   end
 
   file:write(serialize_configuration(configuration))
   file:close()
   package.loaded["configuration"] = nil
-  show_message("AI Dictionary settings saved.")
+  show_message(_("AI Dictionary settings saved."))
   return true
 end
 
@@ -633,10 +633,10 @@ function AskGPT:editConfigurationValue(key, parse_as_literal)
 
   local input_dialog
   input_dialog = InputDialog:new {
-    title = "Edit " .. label,
+    title = _("Edit ") .. label,
     input = input_value,
     input_type = current_type == "number" and "number" or "text",
-    description = (parse_as_literal or current_type == "table") and "Enter a Lua literal: string, number, boolean, or table." or nil,
+    description = (parse_as_literal or current_type == "table") and _("Enter a Lua literal: string, number, boolean, or table.") or nil,
     buttons = {
       {
         {
@@ -655,7 +655,7 @@ function AskGPT:editConfigurationValue(key, parse_as_literal)
             if current_type == "number" then
               new_value = tonumber(raw_value)
               if new_value == nil then
-                show_message("Please enter a valid number.")
+                show_message(_("Please enter a valid number."))
                 return
               end
             elseif current_type == "boolean" then
@@ -663,7 +663,7 @@ function AskGPT:editConfigurationValue(key, parse_as_literal)
             elseif parse_as_literal or current_type == "table" then
               local parsed_value, parse_error = parse_lua_literal(raw_value)
               if parsed_value == nil then
-                show_message("Please enter a valid non-nil Lua value.\n" .. tostring(parse_error or ""))
+                show_message(_("Please enter a valid non-nil Lua value.\n" ).. tostring(parse_error or ""))
                 return
               end
               new_value = parsed_value
@@ -686,10 +686,10 @@ end
 function AskGPT:addConfigurationValue()
   local key_dialog
   key_dialog = InputDialog:new {
-    title = "Add setting",
+    title = _("Add setting"),
     input = "",
     input_type = "text",
-    description = "Enter a Lua identifier, for example: additional_parameters",
+    description = _("Enter a Lua identifier, for example: additional_parameters"),
     buttons = {
       {
         {
@@ -704,13 +704,13 @@ function AskGPT:addConfigurationValue()
           callback = function()
             local key = key_dialog:getInputText()
             if not is_lua_identifier(key) then
-              show_message("Setting names must be Lua identifiers.")
+              show_message(_("Setting names must be Lua identifiers."))
               return
             end
 
             local configuration = load_configuration()
             if configuration[key] ~= nil then
-              show_message("That setting already exists.")
+              show_message(_("That setting already exists."))
               return
             end
 
@@ -729,10 +729,10 @@ end
 function AskGPT:editNewConfigurationLiteral(key)
   local value_dialog
   value_dialog = InputDialog:new {
-    title = "Set " .. key,
+    title = _("Set ") .. key,
     input = "\"\"",
     input_type = "text",
-    description = "Enter a Lua literal: string, number, boolean, or table.",
+    description = _("Enter a Lua literal: string, number, boolean, or table."),
     buttons = {
       {
         {
@@ -747,7 +747,7 @@ function AskGPT:editNewConfigurationLiteral(key)
           callback = function()
             local value, parse_error = parse_lua_literal(value_dialog:getInputText())
             if value == nil then
-              show_message("Please enter a valid non-nil Lua value.\n" .. tostring(parse_error or ""))
+              show_message(_("Please enter a valid non-nil Lua value.\n" ).. tostring(parse_error or ""))
               return
             end
 
@@ -832,7 +832,7 @@ function AskGPT:getSettingsMenuItems()
 
   if #delete_items > 0 then
     table.insert(items, {
-      text = "Delete custom setting",
+      text = _("Delete custom setting"),
       sub_item_table = delete_items,
     })
   end
@@ -842,14 +842,14 @@ end
 
 function AskGPT:addToMainMenu(menu_items)
   menu_items.ai_dictionary_lookups_report = {
-    text = "AI Dictionary Lookups Report",
+    text = _("AI Dictionary Lookups Report"),
     sorting_hint = "search",
     callback = function()
       self:showLookupsReportRequestDialog()
     end,
   }
   menu_items.ai_dictionary_settings = {
-    text = "AI Dictionary settings",
+    text = _("AI Dictionary settings"),
     sorting_hint = "more_tools",
     sub_item_table_func = function()
       return self:getSettingsMenuItems()
@@ -869,7 +869,7 @@ function AskGPT:init()
       text = _("AI Explain"),
       enabled = Device:hasClipboard(),
       callback = function()
-          self:Query(_reader_highlight_instance, "AI Explain", false,
+          self:Query(_reader_highlight_instance, _("AI Explain"), false,
             "I'm reading '{title}' by '{author}'{chapter}. This is my highlighted text: \n'{selection}'\n" ..
             "This is the context where it appears: '...{context}...'\n" ..
             "Use web search economically to identify or verify the book, character, place, term, reference, or allusion if that helps. " ..
@@ -885,7 +885,7 @@ function AskGPT:init()
       text = _("AI English Simplify"),
       enabled = Device:hasClipboard(),
       callback = function()
-          self:Query(_reader_highlight_instance, "AI English Explain", false,
+          self:Query(_reader_highlight_instance, _("AI English Explain"), false,
             "I'm an advanced learner of English. I'm reading '{title}' by '{author}'{chapter}. This is my highlighted text: \n'{selection}'\n" ..
             "This is the context where it appears: '...{context}...'\n" ..
             "Explain its meaning in simple understandable English. Keep your explanation brief and under 30 words.")
@@ -898,7 +898,7 @@ function AskGPT:init()
       text = _("AI Dictionary"),
       enabled = Device:hasClipboard(),
       callback = function()
-          self:Query(_reader_highlight_instance, "AI Dictionary", true,
+          self:Query(_reader_highlight_instance, _("AI Dictionary"), true,
             "I'm an advanced learner of English. I'm reading '{title}' by '{author}'{chapter}. My selected text: \n'{selection}'\n"..
             "This is the context where it appears: '...{context}...'\n" ..
             "ONLY for the selected text, give me an informative, context-aware, dictionary-style answer strictly in this format ONCE and add nothing more:\n" ..
