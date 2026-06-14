@@ -1,11 +1,13 @@
+local _ = require("l10n/aidictionary_l10n")
+
 local TIMEFRAMES = {
-  { label = "Today", days = 1 },
-  { label = "3 Days", days = 3 },
-  { label = "7 Days", days = 7 },
-  { label = "1 Month", days = 31 },
-  { label = "3 Months", days = 92 },
-  { label = "1 Year", days = 366 },
-  { label = "All Time", days = nil },
+  { label = _("Today"), days = 1 },
+  { label = _("3 Days"), days = 3 },
+  { label = _("7 Days"), days = 7 },
+  { label = _("1 Month"), days = 31 },
+  { label = _("3 Months"), days = 92 },
+  { label = _("1 Year"), days = 366 },
+  { label = _("All Time"), days = nil },
 }
 
 local function path_join(...)
